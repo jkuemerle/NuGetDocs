@@ -47,6 +47,11 @@ Generally, the guidance in most cases is to only specify a lower bound, and leav
 
     <dependency id="ExamplePackage" version="1.3.2" />
 
+By specifying only a lower bound you can encounter a scenario where a breaking change could be introduced in a package 
+with a higher major version number and NuGet selects that package as it is the highest stable semantic version number. 
+See [NuGet versioning Part 2: the core algorithm][http://blog.davidebbo.com/2011/01/nuget-versioning-part-2-core-algorithm.html] 
+for a detailed description of the selection algorithm.  
+
 ## Prerelease Versions
 When most people install packages from NuGet, they want the latest “stable” release of that package. 
 Other developers like to live life on the edge and want to grab the latest prerelease version of a package. 
