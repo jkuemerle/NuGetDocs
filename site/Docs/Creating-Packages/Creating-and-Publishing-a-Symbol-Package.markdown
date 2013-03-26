@@ -3,22 +3,15 @@
 ## Introduction
 
 Apart from building library/content packages and publishing them to [NuGet.org](http://nuget.org),
-NuGet also supports creating symbol/source packages and publishing them to either [SymbolSource.org](http://symbolsource.org) 
-or to an [internal internal symbol/source server][http://inedo.com/support/documentation/proget/feeds/symbol-and-source-server]. 
-You can also set up  
-[symbol and source][http://www.edsquared.com/2011/02/12/Source+Server+And+Symbol+Server+Support+In+TFS+2010.aspx] 
-repositories manually within your own environment.  
-
+NuGet also supports creating symbol/source packages and publishing them to either the default public symbol/source server 
+at [SymbolSource.org](http://symbolsource.org) or to a [private server](~/docs/creating-packages/Source-and-Symbol-Server-Options).
+ 
 When a package is published to both repositories, Visual Studio can be configured to automatically download 
 PDB files associated with installed packages and allow the developer to use a debugger to step into source 
 files on-demand from Visual Studio. This is a built-in feature of the IDE, that can also be used to debug 
 .NET Framework code using [Microsoft Reference Source](http://referencesource.microsoft.com/) servers.
-It is only required to add a new symbol source in the debugger configuration 
-(see the [instructions](http://www.symbolsource.org/Public/Home/VisualStudio) for the public SymbolSource.org 
-or the [commercial server instructions][http://inedo.com/support/kb/1036/using-progets-symbol-server] for ProGet
-):
-
-	http://srv.symbolsource.org/pdb/Public
+It is only required to add a new symbol source in the debugger configuration, for details 
+see the specifics for your [symbol/source server](~/docs/creating-packages/source-and-symbol-server-options)  
 
 ## Creating a Symbol Package
 
@@ -53,7 +46,8 @@ plus it should contain PDB files alongside DLLs. An example symbol package that 
 
 Source files are placed in a separate special folder - `src`. This folder needs to follow the relative structure 
 of your source repository, because PDBs contain absolute paths to source files used to compile a matching DLL, and 
-they need to be found during publishing on a an internal or [external](http://symbolsource.org) symbol/source server. 
+they need to be found during publishing on an [internal or external](~/docs/creating-packages/Source-and-Symbol-Server-Options) 
+symbol/source server. 
 A base path (common path prefix) can be stripped out. Consider an example library built from these files:
 
 	C:\Projects
@@ -97,7 +91,7 @@ you could put this into your nuspec file:
       <file src="**\*.cs" target="src" />
     </files>
 
-## Publishing a Symbol Package
+## Publishing a Symbol Package To The Public Server
 
 To make life easier, first save your API key as usual:
 
